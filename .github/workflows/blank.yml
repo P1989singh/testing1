@@ -34,7 +34,7 @@ jobs:
         env:
           current_version: ${{ steps.version-lookup.outputs.CURRENT_VERSION }}
 
-      # Runs a single command using the runners shell
+      # Runs a single command using the runners shells
       - name: Run a one-line script
         run: echo Hello, world!
 
