@@ -31,7 +31,14 @@ jobs:
         run: bash ./.github/workflows/version-increment.sh
         env:
           current_version: ${{ steps.version-lookup.outputs.CURRENT_VERSION }}
-
+          scheme: semver
+      - name: Release version
+        uses: softprops/action-gh-release@v1
+        if: ${{ github.ref_name == github.event.repository.default_branch }}
+        with:
+            draft: false
+            prerelease: false
+            tag_name: "${{ steps.version-increment.outputs.VERSION }}"
       # Runs a single command using the runners shell 
       - name: Run a one-line script
         run: echo Hello, world!

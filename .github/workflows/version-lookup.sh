@@ -2,7 +2,7 @@
 set -euo pipefail
 
 # https://stackoverflow.com/questions/59895/get-the-source-directory-of-a-bash-script-from-within-the-script-itself
-script_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >.github/workflows 2>&1 && pwd )"
+script_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 # shellcheck source=shared.sh
 source "${script_dir}/shared.sh"
 
@@ -16,7 +16,7 @@ fi
 export grep="grep"
 if [[ "$(uname)" == "Darwin" ]] ; then
     export grep="ggrep"
-    if ! grep --version 1>.github/workflows ; then
+    if ! grep --version 1>/dev/null ; then
         echo "🛑 GNU grep not installed, try brew install coreutils" 1>&2
         exit 9
     fi
