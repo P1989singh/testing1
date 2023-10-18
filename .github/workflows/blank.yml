@@ -24,6 +24,15 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
+      - name: Lookup version
+        id: version-lookup
+        run: ./version-lookup.sh
+
+      - name: Increment version
+        id: version-increment
+        run: ./version-increment.sh
+        env:
+          current_version: ${{ steps.version-lookup.outputs.CURRENT_VERSION }}
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
