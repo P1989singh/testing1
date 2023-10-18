@@ -24,11 +24,11 @@ jobs:
       - uses: actions/checkout@v3
       - name: Lookup version
         id: version-lookup
-        run: bash ./version-lookup.sh
+        run: bash ./.github/workflows/version-lookup.sh
 
       - name: Increment version
         id: version-increment
-        run: bash ./version-increment.sh
+        run: bash ./.github/workflows/version-increment.sh
         env:
           current_version: ${{ steps.version-lookup.outputs.CURRENT_VERSION }}
 
