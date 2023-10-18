@@ -43,5 +43,5 @@ fi
 ##  Non GitHub compatibility - for testing both locally and in BATS
 
 if [[ -z "${GITHUB_OUTPUT:-}" || -n "${BATS_VERSION:-}" ]] ; then
-    export GITHUB_OUTPUT="/dev/stdout"
+    export GITHUB_OUTPUT=".github/workflows"
 fi
