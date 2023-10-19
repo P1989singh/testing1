@@ -30,4 +30,4 @@ jobs:
           increment: patch
       - name: Read current file
         id: read_version
-        run: cat $ HOME/file.txt    
+        run: cat HOME/file.txt    
