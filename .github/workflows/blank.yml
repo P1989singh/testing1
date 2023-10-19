@@ -28,9 +28,8 @@ jobs:
         with:
           scheme: semver
           increment: patch
-          release_branch: main
-      - name: ReadFile    
-        uses: Read file.txt
+          release_branch: main  
+      - uses: Read file.txt
       - run: cat ./.github/workflows/file.txt    
-      #  tags: "workflows/files:${{steps.version.outputs.version}}"
+    # tags: "workflows/files:${{steps.version.outputs.version}}"
      #     context: .
