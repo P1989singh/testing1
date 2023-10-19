@@ -31,8 +31,5 @@ jobs:
           
       - name: ReadFile    
         uses: Read file.txt
-        with:
-          push: false
-          run: cat ./.github/workflows/file.txt    
-          tags: "workflows/files:${{steps.version.outputs.version}}"
-          context: .
+      - run: cat ./.github/workflows/file.txt    
+         
