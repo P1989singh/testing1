@@ -29,7 +29,7 @@ jobs:
           scheme: semver
           increment: patch
       - run: |
-          cat ./.github/workflows/file.txt  
+          cat ./.github/workflows/version.txt  
           git add version.txt
           git push
       
