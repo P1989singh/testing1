@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
 
     # Steps represent a sequence of tasks that will be executed as part of the job
-    steps:
+    steps: 
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
       - name: Get next version
@@ -28,15 +28,10 @@ jobs:
         with:
           scheme: semver
           increment: patch
-      - name: ReadFile    
-        uses: owner/repo@ref
-        with:
-            push: false
-            run: cat ./.github/workflows/file.txt    
-            tags: "workflows/files:${{steps.version.outputs.version}}"
-            context: 
-          
-  #    - name: Read current file
-  #      id: read_version
-  #      run: cat ./.github/workflows/file.txt     
+      - run: |
+          cat ./.github/workflows/file.txt  
+          git add version.txt
+          git push
+      
+
          
