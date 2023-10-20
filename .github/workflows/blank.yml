@@ -17,10 +17,25 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - uses: actions/checkout@main
-      - name: bump version and push tag
-        uses: hennejg/github-tag-action@v4.1.jh1
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN}}
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+      - name: Lookup version
+        id: version-lookup
+        run: bash ./.github/workflows/version-lookup.sh
 
-     
+      - name: Increment version
+        id: version-increment
+        run: bash ./.github/workflows/version-increment.sh
+        env:
+          current_version: ${{ steps.version-lookup.outputs.CURRENT_VERSION }}
+          scheme: semver
+      - name: Release version
+        uses: softprops/action-gh-release@v1
+        if: ${{ github.ref_name == github.event.repository.default_branch }}
+        with:
+            draft: false
+            prerelease: false
+            tag_name: "${{ steps.version-increment.outputs.VERSION }}"
+
+
+      
