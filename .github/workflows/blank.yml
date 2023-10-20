@@ -19,19 +19,11 @@ jobs:
     runs-on: ubuntu-latest
 
     # Steps represent a sequence of tasks that will be executed as part of the job
-    steps: 
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v3
-      - name: Get next version
-        uses: reecetech/version-increment@2023.9.3
-        id: version
+    steps:
+      - uses: actions/checkout@master
+      - name: bump version and push tag
+        uses: hennejg/github-tag-action@v4.1.jh1
         with:
-          scheme: semver
-          increment: patch
-      - run: |
-          cat ./.github/workflows/version.txt  
-          git commit -m "v1.0.0"
-          git push
-      
+          github_token: ${{ secrets.GITHUB_TOKEN}}
 
-         
+     
