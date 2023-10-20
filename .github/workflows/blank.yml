@@ -27,8 +27,9 @@ jobs:
         id: version-increment
         run: bash ./.github/workflows/version-increment.sh
         env:
-          current_version: ${{ steps.version-lookup.outputs.CURRENT_VERSION }}
           scheme: semver
+          current_version: ${{ steps.version-lookup.outputs.CURRENT_VERSION }}
+          
       - name: Release version
         uses: softprops/action-gh-release@v1
         if: ${{ github.ref_name == github.event.repository.default_branch }}
