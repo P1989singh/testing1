@@ -30,7 +30,7 @@ jobs:
           increment: patch
       - run: |
           cat ./.github/workflows/version.txt  
-          git add version.txt
+          git commit -m "v1.0.0"
           git push
       
 
