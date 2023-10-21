@@ -2,7 +2,7 @@
 
 name: CI
 
-# Controls when the workflow will run
+# Controls when the workflow will runc
 on: push 
   
 
@@ -10,7 +10,7 @@ on: push
 jobs:
   # This workflow contains a single job called "builds"
   build:
-    # The type of runner that the job will run onau
+    # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
     # Steps represent a sequence of tasks that will be executed as part of the job
