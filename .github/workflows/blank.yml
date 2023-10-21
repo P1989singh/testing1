@@ -10,7 +10,7 @@ on: push
 jobs:
   # This workflow contains a single job called "builds"
   build:
-    # The type of runner that the job will run ona
+    # The type of runner that the job will run onau
     runs-on: ubuntu-latest
 
     # Steps represent a sequence of tasks that will be executed as part of the job
@@ -21,4 +21,4 @@ jobs:
         id: auto-version-increment
         run: bash ./.github/workflows/auto-increment-v.sh
 
-    
+     
