@@ -2,7 +2,7 @@
 
 name: CI
 
-# Controls when the workflow will runcs
+# Controls when the workflow will runcsn 
 on: push 
   
 
