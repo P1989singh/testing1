@@ -4,9 +4,9 @@ name: CI
 
 # Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the "main" branch
-  push:
-    branches: [ "main" ]
+  issue_comment:
+    types:
+      - created
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -17,6 +17,16 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Fetch Comment Tags
+        id: fetch-tags
+        run: |
+             TAGS=$(curl -s "https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.issue.number }}/comments" | jq -r '.[] | select(.body | test("tags:")) | .body')
+             echo "$TAGS" > tags.txt
+        env:
+             GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
       - name: Lookup version
