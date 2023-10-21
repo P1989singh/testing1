@@ -17,14 +17,10 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+      - name: auto increment version tag  
+        id: auto-version-increment
+        run: bash ./.github/workflows/auto-increment-v.sh
 
-      - name: Fetch Comment Tags
-        id: fetch-tags
-        run: |
-             TAGS=$(curl -s "https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.issue.number }}/comments" | jq -r '.[] | select(.body | test("tags:")) | .body')
-             echo "$TAGS" > tags.txt
-        env:
-             GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
       - name: Lookup version
